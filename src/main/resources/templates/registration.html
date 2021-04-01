@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="index::common-head">
+</head>
+<body>
+
+    <div th:replace="index::common-header">
+    </div>
+
+    <div th:if="${successMessage == true}">
+        <div class="alert alert-success" style="text-align: center;width: 50%;margin: auto"> Check Your Email to Confirm Email Address </div>
+    </div>
+
+    <div th:if="${EmailExistingMsg == true}">
+        <div class="alert alert-danger" style="text-align: center;width: 50%;margin: auto"> Email is already taken </div>
+    </div>
+
+    <div th:if="${tokenError == true}">
+        <div class="alert alert-danger" style="text-align: center;width: 50%;margin: auto"> Invalid token </div>
+    </div>
+
+    <div th:if="${tokenExpire == true}">
+        <div class="alert alert-danger" style="text-align: center;width: 50%;margin: auto"> Token Expired </div>
+    </div>
+
+<div style="width: 550px;margin: auto;background-color: #eff0f5">
+
+    <form class="text-center border border-light p-5" action="#" th:action="@{/registration}" th:object="${users}" method="post">
+
+        <p class="h4 mb-4">Sign up</p>
+
+        <a th:href="@{/oauth2/authorization/facebook}" class="btn btn-primary btn-block m2-4" role="button"><i class="fab fa-facebook-f"></i> &nbsp <b>Sign up with facebook</b></a>
+        <a style="background-color: #ff7575;color: white" th:href="@{/oauth2/authorization/google}" class="btn btn-block my-2" role="button"><i class="fab fa-google"></i> &nbsp <b>Sign up with Google</b></a>
+
+        <div class="form-row my-4 mb-4">
+            <div class="col">
+                <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name" th:field="*{firstName}">
+                <small th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></small>
+            </div>
+            <div class="col">
+                <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name" th:field="*{lastName}">
+                <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></small>
+            </div>
+        </div>
+
+        <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" th:field="*{email}">
+        <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
+
+
+        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" th:field="*{password}">
+        <!--<small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></small>-->
+
+        <input type="text" id="defaultRegisterPhonePassword" class="form-control my-4" placeholder="Phone number" th:field="*{phoneNumber}">
+        <small th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></small>
+
+        <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
+
+        <p>Already a member?
+            <a href="/login">Login</a>
+        </p>
+
+        <p>By clicking
+            <em>Sign up</em> you agree to our
+            <a href="#" target="_blank">terms of service</a>
+
+    </form>
+
+</div>
+
+<div th:replace="index::common-script">
+</div>
+</body>
+</html>

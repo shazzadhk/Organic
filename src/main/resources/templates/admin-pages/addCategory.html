@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin-pages/dashboard::admin-head">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div th:replace="admin-pages/dashboard::admin-nav"></div>
+
+    <div th:replace="admin-pages/dashboard::admin-aside"></div>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Add a new Category</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active">Add Category</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-10" style="margin-left: 80px">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Category Form</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form action="#" th:action="@{/add_category}" th:object="${category}" method="post">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputTitle">Category Name</label>
+                                        <input type="text" class="form-control" id="exampleInputTitle" placeholder="Enter Category Name" th:field="*{category_name}">
+                                        <small th:if="${#fields.hasErrors('category_name')}" th:errors="*{category_name}" class="text-danger"></small>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Add Category</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+
+    <div th:replace="admin-pages/dashboard::admin-footer"></div>
+
+    <div th:replace="admin-pages/dashboard::admin-jsFile"></div>
+
+</div>
+</body>
+</html>

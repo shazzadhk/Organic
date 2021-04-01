@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="index::common-head">
+</head>
+<body>
+
+<div th:replace="index::common-header">
+</div>
+
+<!--<div></div>-->
+    <!--<div th:if="${errorMessage == true}">-->
+        <!--<div class="alert alert-danger" style="text-align: center;width: 50%;margin: auto"> Invalid Username or Password </div>-->
+    <!--</div>-->
+
+    <div th:if="${param.error}" class="alert alert-danger" style="text-align: center;width: 50%;margin: auto">
+        Invalid username or password.
+    </div>
+
+    <div style="width: 550px;margin: auto;background-color: #eff0f5">
+        <form class="text-center border border-light p-5" action="#" method="post">
+
+            <p class="h4 mb-4">Sign in</p>
+
+            <a th:href="@{/oauth2/authorization/facebook}" class="btn btn-primary btn-block m2-4" role="button"><i class="fab fa-facebook-f"></i> &nbsp <b>Sign in with facebook</b></a>
+            <a style="background-color: #ff7575;color: white" th:href="@{/oauth2/authorization/google}" class="btn btn-block my-2" role="button"><i class="fab fa-google"></i> &nbsp <b>Sign in with Google</b></a>
+
+            <!-- Email -->
+            <input type="email" name="username" id="defaultLoginFormEmail" class="form-control mb-4 my-4" placeholder="Email">
+
+            <!-- Password -->
+            <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+
+            <div class="d-flex justify-content-around">
+                <div>
+                    <!-- Remember me -->
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="remember-me" class="custom-control-input" id="defaultLoginFormRemember">
+                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                    </div>
+                </div>
+                <div>
+                    <!-- Forgot password -->
+                    <a href="/forgetPassword">Forgot password?</a>
+                </div>
+            </div>
+
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+            <!-- Register -->
+            <p>Not a member?
+                <a href="/registration">Register</a>
+            </p>
+
+            <!-- Social login -->
+            <!--<p>or sign in with:</p>-->
+
+            <!--<a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>-->
+            <!--<a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>-->
+            <!--<a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>-->
+            <!--<a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>-->
+
+        </form>
+    </div>
+
+
+
+<div th:replace="index::common-script">
+</div>
+</body>
+</html>
