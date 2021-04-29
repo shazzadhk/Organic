@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin-pages/dashboard::admin-head">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div th:replace="admin-pages/dashboard::admin-nav"></div>
+
+    <div th:replace="admin-pages/dashboard::admin-aside"></div>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Product List</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">view products</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <a th:href="@{/add_category}" class="btn btn-primary" style="margin-left: 900px;margin-bottom: 10px"><b>+</b>Add Product</a>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Product List with default features</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Product ID</th>
+                                        <th>Product Title</th>
+                                        <th>Product Price</th>
+                                        <th>Product Quantity</th>
+                                        <th>Product CreatedDate</th>
+                                        <th>Product ModifyDate</th>
+                                        <th>Product Category</th>
+                                        <th>Actions</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr data-th-each="product : ${products}">
+                                        <td>[[${product.product_id}]]</td>
+                                        <td>[[${product.product_title}]]</td>
+                                        <td>[[${product.product_price}]]</td>
+                                        <td>[[${product.product_size}]]</td>
+                                        <td>[[${product.createdDate}]]</td>
+                                        <td>[[${product.modifyDate}]]</td>
+                                        <td>[[${product.product_category.category_name}]]</td>
+                                        <td>
+                                            <a th:href="@{/updateProduct(product_id= ${product.product_id})}" class="btn btn-success">Edit</a>
+                                            <a href="#" class="btn btn-danger">Delete</a>
+                                        </td>
+                                        <!--<td>-</td>-->
+                                        <!--<td>X</td>-->
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="admin-pages/dashboard::admin-footer"></div>
+
+    <div th:replace="admin-pages/dashboard::admin-jsFile"></div>
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": true, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+</div>
+</body>
+</html>
