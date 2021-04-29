@@ -43,7 +43,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             "/edit_profile",
             "/myProfile",
             "/add_product",
-            "/add_category"
+            "/add_category",
+            "/view_category",
+            "/updateCategory",
+            "/deleteCategory",
+            "/customers",
+            "/updateProduct",
+            "/view_products"
     };
 
     @Override

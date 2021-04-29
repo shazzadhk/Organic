@@ -1,10 +1,16 @@
 package com.example.organic.Model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.repository.*;
+
 import javax.persistence.*;
+import javax.persistence.Temporal;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 public class Product {
@@ -24,6 +30,14 @@ public class Product {
 
     @NotEmpty(message = "*you can't leave this field empty")
     private String product_description;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    private Date createdDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.DATE)
+    private Date modifyDate;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
@@ -75,5 +89,21 @@ public class Product {
 
     public void setProduct_description(String product_description) {
         this.product_description = product_description;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 }

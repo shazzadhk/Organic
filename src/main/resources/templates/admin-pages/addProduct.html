@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add a new Product</h1>
+                        <h1>Add new Product</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -42,6 +42,7 @@
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form action="#" th:action="@{/add_product}" th:object="${product}" method="post">
+                                <input type="hidden" th:field="*{product_id}">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputTitle">Product Title</label>
@@ -52,7 +53,7 @@
                                         <label>Product Category</label>
                                         <!--<input type="password" class="form-control" id="exampleInputCategory" placeholder="">-->
                                         <select class="custom-select" th:field="*{product_category}">
-                                            <option th:value="0">--Select Any--</option>
+                                            <!--<option th:value="0">&#45;&#45;Select Any&#45;&#45;</option>-->
                                             <option th:each="c:${category_list}" th:value="${c.category_id}" th:text="${c.category_name}"></option>
                                         </select>
                                         <small th:if="${#fields.hasErrors('product_category')}" th:errors="*{product_category}" class="text-danger"></small>
@@ -76,7 +77,8 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Add Product</button>
+                                    <button th:if="${product.product_id == null}" type="submit" class="btn btn-primary">Add Product</button>
+                                    <button th:unless="${product.product_id == null}" type="submit" class="btn btn-primary">Update Product</button>
                                 </div>
                             </form>
                         </div>

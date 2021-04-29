@@ -16,12 +16,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Category List</h1>
+                        <h1>Customer List</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">view category</li>
+                            <li class="breadcrumb-item active">Customer List</li>
                         </ol>
                     </div>
                 </div>
@@ -31,48 +31,38 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <a th:href="@{/add_category}" class="btn btn-primary" style="margin-left: 900px;margin-bottom: 10px"><b>+</b>Add New Category</a>
-                </div>
+                <!--<div class="row">-->
+                    <!--<a th:href="@{/add_category}" class="btn btn-primary" style="margin-left: 900px;margin-bottom: 10px"><b>+</b>Add New Category</a>-->
+                <!--</div>-->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Category List with default features</h3>
+                                <h3 class="card-title">Customer List with default features</h3>
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Category ID</th>
-                                        <th>Category Name</th>
-                                        <th>Actions</th>
+                                        <th>User ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                    <tr data-th-each="category : ${categoryList}">
-                                        <td>[[${category.category_id}]]</td>
-                                        <td>[[${category.category_name}]]</td>
-                                        <td>
-                                            <a th:href="@{/updateCategory(category_id= ${category.category_id})}" class="btn btn-success">Edit</a>
-                                            <a th:href="@{/deleteCategory(category_id= ${category.category_id})}" class="btn btn-danger">Delete</a>
-                                        </td>
-                                        <!--<td>-</td>-->
-                                        <!--<td>X</td>-->
+                                    <tr data-th-each="user : ${userList}">
+                                        <td>[[${user.id}]]</td>
+                                        <td>[[${user.firstName}]]</td>
+                                        <td>[[${user.lastName}]]</td>
+                                        <td>[[${user.email}]]</td>
+                                        <td>[[${user.phoneNumber}]]</td>
                                     </tr>
 
                                     </tbody>
-                                    <!--<tfoot>-->
-                                    <!--<tr>-->
-                                        <!--<th>Rendering engine</th>-->
-                                        <!--<th>Browser</th>-->
-                                        <!--<th>Platform(s)</th>-->
-                                        <!--<th>Engine version</th>-->
-                                        <!--<th>CSS grade</th>-->
-                                    <!--</tr>-->
-                                    <!--</tfoot>-->
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -98,15 +88,7 @@
                 "responsive": true, "lengthChange": true, "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-//            $('#example2').DataTable({
-//                "paging": true,
-//                "lengthChange": false,
-//                "searching": false,
-//                "ordering": true,
-//                "info": true,
-//                "autoWidth": false,
-//                "responsive": true
-//            });
+//
         });
     </script>
 

@@ -33,7 +33,7 @@ public class UserServiceImp implements UserService {
 
         users.setRoles( roles);
 
-        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+//        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
 
         usersDao.save(users);
     }
